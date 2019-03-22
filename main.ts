@@ -43,14 +43,15 @@ const SERV_B = SERV_15 //Baza
 const MIN_SERV_P = 20
 const MAX_SERV_P = 140
 const MIN_SERV_L = 20
+
 const MAX_SERV_L = 100
 const MIN_SERV_S = 80
 const MAX_SERV_S = 100
 const MIN_SERV_B = 20
 const MAX_SERV_B = 150
 
-
 basic.showIcon(IconNames.Happy)
+
 
 // If you want Debug mode ON - press "AB" button during reboot
 let IsDebug: boolean
@@ -116,7 +117,7 @@ input.onButtonPressed(Button.B, function () {
         case SERV_L:
             KatSerwaL += SERV_STEP
             if (KatSerwaL > MAX_SERV_L) KatSerwaL = MAX_SERV_L
-            if (IsDebug) basic.showNumber(Math.round(KatSerwaS / 10))
+            if (IsDebug) basic.showNumber(Math.round(KatSerwaL / 10))
             break;
         case SERV_S:
             KatSerwaS += SERV_STEP
@@ -200,4 +201,113 @@ input.onButtonPressed(Button.AB, function () {
         default:
             if (IsDebug) basic.showNumber(NumerSerwa)
     }
+})
+
+
+function RamieNaDol() {
+
+
+    for (let i = 0; i < 11; i++) {
+
+        KatSerwaP += SERV_STEP
+        if (KatSerwaP > MAX_SERV_P) KatSerwaP = MAX_SERV_P
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaP / 10))
+        KatSerwaL -= SERV_STEP
+        if (KatSerwaL < MIN_SERV_L + 40) KatSerwaL = MIN_SERV_L + 40
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaL / 10))
+        Servo.Servo(SERV_P, KatSerwaP) //prawy   -  20->140
+        Servo.Servo(SERV_L, KatSerwaL) //lewy    -  20->100
+        basic.pause(50)
+    }
+
+}
+
+
+function RamieWGore() {
+
+
+    for (let i = 0; i < 11; i++) {
+
+        KatSerwaL += SERV_STEP
+        if (KatSerwaL > MAX_SERV_L) KatSerwaL = MAX_SERV_L
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaL / 10))
+        KatSerwaP -= SERV_STEP
+        if (KatSerwaP < MIN_SERV_P) KatSerwaL = MIN_SERV_P
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaP / 10))
+        Servo.Servo(SERV_P, KatSerwaP) //prawy   -  20->140
+        Servo.Servo(SERV_L, KatSerwaL) //lewy    -  20->100
+        basic.pause(50)
+    }
+
+}
+
+function SzczekiOtworz() {
+
+
+    for (let i = 0; i < 20; i++) {
+        KatSerwaS -= 1
+        if (KatSerwaS < MIN_SERV_S) KatSerwaS = MIN_SERV_S
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaS / 10))
+        Servo.Servo(SERV_S, KatSerwaS) //szczęki -  80->100
+        basic.pause(50)
+    }
+
+}
+
+function SzczekiZamknij() {
+
+
+    for (let i = 0; i < 20; i++) {
+        KatSerwaS += 1
+        if (KatSerwaS > MAX_SERV_S) KatSerwaS = MAX_SERV_S
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaS / 10))
+        Servo.Servo(SERV_S, KatSerwaS) //szczęki -  80->100
+        basic.pause(50)
+    }
+
+}
+
+function RamieWPrawo() {
+    for (let i = 0; i < 130; i++) {
+        KatSerwaB -= 1
+        if (KatSerwaB < MIN_SERV_B) KatSerwaB = MIN_SERV_B
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaB / 10))
+        Servo.Servo(SERV_B, KatSerwaB) //baza    -  20->150
+        basic.pause(30)
+    }
+
+}
+
+function RamieWLewo() {
+    for (let i = 0; i < 130; i++) {
+        KatSerwaB += 1
+        if (KatSerwaB > MAX_SERV_B) KatSerwaB = MAX_SERV_B
+        if (IsDebug) basic.showNumber(Math.round(KatSerwaB / 10))
+        Servo.Servo(SERV_B, KatSerwaB) //baza    -  20->150
+        basic.pause(30)
+    }
+
+}
+
+
+input.onGesture(Gesture.Shake, function () {
+
+    RamieWPrawo()
+})
+
+input.onGesture(Gesture.ScreenDown, function () {
+
+    RamieWLewo()
+})
+
+
+input.onGesture(Gesture.LogoDown, function () {
+
+    SzczekiOtworz()
+})
+
+
+input.onGesture(Gesture.LogoUp, function () {
+
+    SzczekiZamknij()
 })
