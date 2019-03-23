@@ -1,13 +1,13 @@
 // Tutaj ustaw którymi złączkami S1-S8 masz masz podłączone serwa RoboRamienia
 // w przypadku płytki sterowniczej DFRobot Micro:bit Driver Expansion Board (v1.0) 
 // są to następujące łącza (w przypadku tej konfiguracji):
-// S1 - 15 (tutaj podłączona baza)
+// S0 - 0 (tutaj podłączone pierwsze biodro)
 // S2 - 14 (tutaj podłączone lewe serwo)
 // S3 - 13 (tutaj podłączone szczęki)
 // S4 - 12 (tutaj podłączone prawe serwo)
 // S5 - 11
 // S6 - 10
-// S7 -  9
+// S7 -  7 (tutaj jest podłączone pierwsze kolano)
 // S8 -  8
 
 const SERV_0 = 0
@@ -28,17 +28,16 @@ const SERV_14 = 14
 const SERV_15 = 15
 
 // setup min and max numer of servos to be changed using AB buttons 
-const MAX_SERV = 15
-const MIN_SERV = 12
+const MAX_SERV = 7
+const MIN_SERV = 0
 
 // increase/decrease step
 const SERV_STEP = 10
 
 
-const SERV_P = SERV_12 //Prawy
-const SERV_S = SERV_13 //Szczęki
-const SERV_L = SERV_14 //Lewy
-const SERV_B = SERV_15 //Baza
+const SERV_B1 = SERV_0 //Biodro 1
+const SERV_K1 = SERV_7 //Kolano 1
+
 
 const MIN_SERV_P = 20
 const MAX_SERV_P = 140
@@ -62,25 +61,17 @@ else IsDebug = false
 
 if (IsDebug) basic.showString("RamieRobota - Debug mode")
 
-let NumerSerwaL: number //Lewe serwo
-let KatSerwaL: number
-let NumerSerwaP: number //Prawe serwo
-let KatSerwaP: number
-let NumerSerwaS: number //Szczęki
-let KatSerwaS: number
-let NumerSerwaB: number //Baza
-let KatSerwaB: number
+let NumerSerwaB1: number //Biodro 1
+let KatSerwaB1: number
+let NumerSerwaK1: number //Kolano 1
+let KatSerwaK1: number
 
 // ustawiamy w pozycji "połowa" - przyda się w kalibracji
 // należy zdjąć ramię serwa i nałożyć je w mniej więcj połowie zakresu roboczego
-NumerSerwaL = SERV_L
-KatSerwaL = 20
-NumerSerwaP = SERV_P
-KatSerwaP = 20
-NumerSerwaS = SERV_S
-KatSerwaS = 80
-NumerSerwaB = SERV_B
-KatSerwaB = 90
+NumerSerwaB1 = SERV_B1
+KatSerwaB1 = 90
+NumerSerwaK1 = SERV_K1
+KatSerwaK1 = 90
 
 Servo.Servo(0, 90)
 Servo.Servo(1, 90)
@@ -94,10 +85,10 @@ Servo.Servo(8, 90)
 Servo.Servo(9, 90)
 Servo.Servo(10, 90)
 Servo.Servo(11, 90)
-Servo.Servo(SERV_P, KatSerwaP) //prawy   -  20->140
-Servo.Servo(SERV_S, KatSerwaS) //szczęki -  80->100
-Servo.Servo(SERV_L, KatSerwaL) //lewy    -  20->100
-Servo.Servo(SERV_B, KatSerwaB) //baza    -  20->150
+Servo.Servo(12, 90)
+Servo.Servo(13, 90)
+Servo.Servo(14, 90)
+Servo.Servo(15, 90)
 
 let NumerSerwa = 13
 let KatSerwa = 90
