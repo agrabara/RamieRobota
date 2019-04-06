@@ -36,7 +36,7 @@ const SERV_STEP = 10
 
 
 const SERV_B1 = SERV_0 //Biodro 1
-const SERV_K1 = SERV_7 //Kolano 1
+const SERV_K1 = SERV_6 //Kolano 1
 
 
 const MAX_SERV_B1 = 160
@@ -92,52 +92,108 @@ basic.pause(2000)
 basic.clearScreen()
 
 
-function NogaPrzodGora() {
+function NogaPrzodGora(NumerNogi: number) {
     //basic.showString("G")
-    Servo.Servo(SERV_B1, MAX_SERV_B1)
-    Servo.Servo(SERV_K1, MAX_SERV_K1)
+    if (NumerNogi <= 2) {
+        Servo.Servo(SERV_B1 + NumerNogi, MAX_SERV_B1)
+    } else {
+        Servo.Servo(SERV_B1 + NumerNogi, MIN_SERV_B1)
+    }
+    Servo.Servo(SERV_K1 + NumerNogi, MAX_SERV_K1)
     basic.pause(30)
 }
-function NogaTylDol() {
+function NogaTylDol(NumerNogi: number) {
     //basic.showString("D")
-    Servo.Servo(SERV_B1, MIN_SERV_B1)
-    Servo.Servo(SERV_K1, MIN_SERV_K1)
+    if (NumerNogi <= 2) {
+        Servo.Servo(SERV_B1 + NumerNogi, MIN_SERV_B1)
+    } else {
+        Servo.Servo(SERV_B1 + NumerNogi, MAX_SERV_B1)
+    }
+    Servo.Servo(SERV_K1 + NumerNogi, MIN_SERV_K1)
     basic.pause(30)
 }
-function NogaTylGora() {
+function NogaTylGora(NumerNogi: number) {
     //basic.showString("TG")
-    Servo.Servo(SERV_B1, MIN_SERV_B1)
-    Servo.Servo(SERV_K1, MAX_SERV_K1)
+    if (NumerNogi <= 2) {
+        Servo.Servo(SERV_B1 + NumerNogi, MIN_SERV_B1)
+    } else {
+        Servo.Servo(SERV_B1 + NumerNogi, MAX_SERV_B1)
+    }
+    Servo.Servo(SERV_K1 + NumerNogi, MAX_SERV_K1)
     basic.pause(30)
 }
-function NogaPrzodDol() {
+function NogaPrzodDol(NumerNogi: number) {
     //basic.showString("PD")
-    Servo.Servo(SERV_B1, MAX_SERV_B1)
-    Servo.Servo(SERV_K1, MIN_SERV_K1)
+    if (NumerNogi <= 2) {
+        Servo.Servo(SERV_B1 + NumerNogi, MAX_SERV_B1)
+    } else {
+        Servo.Servo(SERV_B1 + NumerNogi, MIN_SERV_B1)
+    }
+    Servo.Servo(SERV_K1 + NumerNogi, MIN_SERV_K1)
     basic.pause(30)
 }
 
 input.onButtonPressed(Button.A, function () {
-    for (let i = 0; i < 5; i++) {
-        NogaPrzodGora()
+    for (let i = 0; i < 16; i++) {
+        NogaPrzodGora(0)
+        NogaPrzodGora(1)
+        NogaPrzodGora(2)
+        NogaPrzodGora(3)
+        NogaPrzodGora(4)
+        NogaPrzodGora(5)
         basic.pause(500)
-        NogaTylGora()
+        NogaTylGora(0)
+        NogaTylGora(1)
+        NogaTylGora(2)
+        NogaTylGora(3)
+        NogaTylGora(4)
+        NogaTylGora(5)
         basic.pause(500)
-        NogaPrzodGora()
+        NogaPrzodGora(0)
+        NogaPrzodGora(1)
+        NogaPrzodGora(2)
+        NogaPrzodGora(3)
+        NogaPrzodGora(4)
+        NogaPrzodGora(5)
         basic.pause(500)
-        NogaTylGora()
+        NogaTylGora(0)
+        NogaTylGora(1)
+        NogaTylGora(2)
+        NogaTylGora(3)
+        NogaTylGora(4)
+        NogaTylGora(5)
         basic.pause(500)
     }
 })
 input.onButtonPressed(Button.B, function () {
-    for (let i = 0; i < 5; i++) {
-        NogaPrzodGora()
+    for (let i = 0; i < 16; i++) {
+        NogaPrzodGora(0)
+        NogaPrzodGora(1)
+        NogaPrzodGora(2)
+        NogaPrzodGora(3)
+        NogaPrzodGora(4)
+        NogaPrzodGora(5)
         basic.pause(500)
-        NogaPrzodDol()
+        NogaPrzodDol(0)
+        NogaPrzodDol(1)
+        NogaPrzodDol(2)
+        NogaPrzodDol(3)
+        NogaPrzodDol(4)
+        NogaPrzodDol(5)
         basic.pause(500)
-        NogaTylDol()
+        NogaTylDol(0)
+        NogaTylDol(1)
+        NogaTylDol(2)
+        NogaTylDol(3)
+        NogaTylDol(4)
+        NogaTylDol(5)
         basic.pause(500)
-        NogaTylGora()
+        NogaTylGora(0)
+        NogaTylGora(1)
+        NogaTylGora(2)
+        NogaTylGora(3)
+        NogaTylGora(4)
+        NogaTylGora(5)
         basic.pause(500)
     }
 
